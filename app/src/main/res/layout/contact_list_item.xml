@@ -3,19 +3,32 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="#454545"
+  android:background="#56B1B1B1"
     android:layout_marginBottom="25px"
     android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:orientation="horizontal">
-<ImageView
-    android:layout_width="250px"
-    android:layout_height="250px"
-    android:src="@drawable/baseline_person_24"
-    />
+        <TextView
+
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:layout_marginRight="15px"
+            android:text="A"
+            android:textSize="70px"
+            android:textAlignment="center"
+            android:background="@drawable/nesw"
+            android:backgroundTint="@android:color/holo_blue_bright"
+            android:id="@+id/firstlat"
+            />
+<!--<ImageView-->
+<!--    android:layout_width="100px"-->
+<!--    android:layout_height="100px"-->
+<!--    android:src="@drawable/baseline_person_24"-->
+<!--    />-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,16 +38,18 @@
             android:id="@+id/nameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textSize="70px"
+            android:textColor="@color/black"
+            android:text="Text"
 
-        <TextView
-            android:id="@+id/phoneTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
+            />
+
+<!--        <TextView-->
+<!--            android:id="@+id/phoneTextView"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="14sp" />-->
     </LinearLayout>
     </LinearLayout>
 <LinearLayout
@@ -42,21 +57,6 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     >
-
-    <Button
-        android:id="@+id/editButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@android:drawable/ic_menu_edit"
-        android:text="Edit" />
-
-    <Button
-        android:id="@+id/deleteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12px"
-        android:drawableLeft="@android:drawable/ic_menu_delete"
-        android:text="Delete" />
 
 </LinearLayout>
 

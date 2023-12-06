@@ -5,31 +5,55 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Name EditText with Label -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textSize="18sp"
+        android:textColor="#000000" />
     <EditText
         android:id="@+id/nameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
-        android:hint="Name" />
+        android:hint="Enter Name" />
 
+    <!-- Email EditText with Label -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textSize="18sp"
+        android:textColor="#000000" />
     <EditText
         android:id="@+id/emailEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email" />
+        android:hint="Enter Email" />
 
+    <!-- Phone Number EditText with Label -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Phone Number"
+        android:textSize="18sp"
+        android:textColor="#000000" />
     <EditText
         android:id="@+id/phoneEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Phone Number" />
+        android:hint="Enter Phone Number"
+        android:inputType="phone"
+        android:digits="0123456789+-() " />
 
+    <!-- Save Button -->
     <Button
         android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="#3F51B5"
+        android:background="#3FB599"
         android:drawableLeft="@android:drawable/ic_menu_save"
         android:text="Save" />
 

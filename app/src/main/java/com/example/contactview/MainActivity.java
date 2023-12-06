@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         dbhelp = new ContactDatabaseHelper(this);
 
-        contacts = dbhelp.getAllContacts();
-        originalContacts = dbhelp.getAllContacts();
+        contacts = dbhelp.getAllContactsAlphabetical();
+        originalContacts = dbhelp.getAllContactsAlphabetical();
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -42,30 +42,21 @@ public class MainActivity extends AppCompatActivity {
         adapter = new ContactListAdapter(contacts);
         recyclerView.setAdapter(adapter);
 
+
         adapter.setOnItemClickListener(new ContactListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 openContactDetails(position);
             }
-
-            @Override
-            public void onEditClick(int position) {
-                openEditContactActivity(position);
-            }
-
-            @Override
-            public void onDeleteClick(int position) {
-                deleteContact(position);
-            }
         });
 
-        Button addContactButton = findViewById(R.id.addContactButton);
-        addContactButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openAddContactActivity();
-            }
-        });
+//        Button addContactButton = findViewById(R.id.addContactButton);
+//        addContactButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                openAddContactActivity();
+//            }
+//        });
 
         EditText searchEditText = findViewById(R.id.searchEditText);
         searchEditText.addTextChangedListener(new TextWatcher() {
@@ -94,16 +85,14 @@ public class MainActivity extends AppCompatActivity {
     private void openAddContactActivity() {
         Intent intent = new Intent(this, AddContactActivity.class);
         startActivityForResult(intent, 1);
+
     }
 
-    private void openEditContactActivity(int position) {
-        Contact contact = contacts.get(position);
-        Intent intent = new Intent(this, EditContactActivity.class);
-        intent.putExtra("position", position);
-        intent.putExtra("id", contact.getId());
-        Toast.makeText(this, "ID:"+String.valueOf(contact.getId()), Toast.LENGTH_SHORT).show();
+    public void openAddContactActivitys(View  view) {
 
-        startActivityForResult(intent, 2);
+        Intent intent = new Intent(this, AddContactActivity.class);
+        startActivityForResult(intent, 1);
+        finish();
     }
 
     private void filterContacts(String query) {
@@ -121,14 +110,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    private void deleteContact(int position) {
-        if (position >= 0 && position < contacts.size()) {
-            Contact contact = contacts.get(position);
-            dbhelp.deleteContact(contact.getId());
-            contacts.remove(position);
-            adapter.notifyDataSetChanged();
-        }
-    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

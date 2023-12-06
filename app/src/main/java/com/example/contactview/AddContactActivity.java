@@ -1,5 +1,6 @@
 package com.example.contactview;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -51,11 +52,16 @@ ContactDatabaseHelper contactDatabaseHelper;
         Contact contact=new Contact( name,email,phoneNumber);
     int id= (int) contactDatabaseHelper.addContact(contact);
         Toast.makeText(this,"ID:"+ String.valueOf(id), Toast.LENGTH_SHORT).show();
-//        Intent intent = new Intent();
-//        intent.putExtra("name", name);
-//        intent.putExtra("email", email);
-//        intent.putExtra("phoneNumber", phoneNumber);
-//        setResult(RESULT_OK, intent);
+        Intent intents = new Intent(this, MainActivity.class);
+        startActivityForResult(intents,0);
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intents = new Intent(this, MainActivity.class);
+        startActivityForResult(intents,0);
+        finish();
+        super.onBackPressed();
     }
 }

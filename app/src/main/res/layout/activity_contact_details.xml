@@ -1,9 +1,11 @@
 <!-- activity_contact_details.xml -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     android:padding="16dp">
 
     <LinearLayout
@@ -16,6 +18,9 @@
             android:layout_width="350px"
             android:layout_height="350px"
             android:layout_gravity="center"
+            android:layout_marginTop="80px"
+            android:layout_marginBottom="40px"
+            android:background="@drawable/nesw"
             android:src="@drawable/baseline_person_24" />
 
         <!-- Contact Details -->
@@ -23,6 +28,7 @@
             android:id="@+id/nameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="50px"
             android:text="Hello"
             android:textColor="@color/black"
             android:textSize="30sp"
@@ -31,8 +37,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="14px">
+            android:layout_marginTop="14px"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/emailTextView"
@@ -53,32 +59,79 @@
                 android:textSize="24sp" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40px"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="150px"
+                android:layout_height="150px"
+                android:onClick="call"
+                android:src="@drawable/baseline_call_24"
+                android:tint="#0FCF17"
+                tools:ignore="UseAppTint" />
+
+            <ImageView
+                android:onClick="message"
+                android:layout_width="150px"
+                android:layout_height="150px"
+                android:layout_marginLeft="40px"
+                android:src="@drawable/baseline_message_24"
+                android:tint="@android:color/holo_blue_bright"
+                tools:ignore="UseAppTint" />
+        </LinearLayout>
     </LinearLayout>
 
     <!-- Edit and Delete Buttons -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/editButton"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Edit"
-            android:onClick="edit"
-            android:layout_marginEnd="8dp"/>
+            android:gravity="start"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/deleteButton"
-            android:layout_width="0dp"
+            <ImageView
+
+                android:id="@+id/editButton"
+                android:layout_width="120px"
+                android:layout_height="120px"
+                android:background="@android:color/transparent"
+                android:onClick="edit"
+                android:src="@drawable/baseline_edit_24"
+                android:text="Edit"
+
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Delete"
-            android:layout_marginStart="8dp"/>
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <ImageView
+
+
+                android:id="@+id/deleteButton"
+                android:layout_width="120px"
+                android:layout_height="120px"
+                android:background="@android:color/transparent"
+                android:onClick="delete"
+                android:src="@drawable/baseline_delete_24"
+                android:text="Delete" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

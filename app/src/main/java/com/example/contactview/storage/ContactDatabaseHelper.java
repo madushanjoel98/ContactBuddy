@@ -10,6 +10,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.contactview.dto.Contact;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ContactDatabaseHelper extends SQLiteOpenHelper {
@@ -113,5 +115,38 @@ public class ContactDatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return contact;
+    }
+    public List<Contact> getAllContactsAlphabetical() {
+        List<Contact> contacts = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(TABLE_CONTACTS, null, null, null, null, null, COLUMN_NAME + " ASC");
+
+        if (cursor.moveToFirst()) {
+            do {
+                @SuppressLint("Range")
+                long id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
+                @SuppressLint("Range")
+                String name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME));
+                @SuppressLint("Range")
+                String email = cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL));
+                @SuppressLint("Range")
+                String phone = cursor.getString(cursor.getColumnIndex(COLUMN_PHONE));
+                Contact contact = new Contact(id, name, email, phone);
+                contacts.add(contact);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        // Sort contacts alphabetically
+        Collections.sort(contacts, new Comparator<Contact>() {
+            @Override
+            public int compare(Contact contact1, Contact contact2) {
+                return contact1.getName().compareToIgnoreCase(contact2.getName());
+            }
+        });
+
+        return contacts;
     }
 }

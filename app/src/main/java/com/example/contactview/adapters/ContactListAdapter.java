@@ -21,10 +21,6 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
 
     public interface OnItemClickListener {
         void onItemClick(int position);
-
-        void onEditClick(int position);
-
-        void onDeleteClick(int position);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -51,7 +47,9 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Contact contact = contacts.get(position);
         holder.nameTextView.setText(contact.getName());
-        holder.phoneTextView.setText(contact.getPhoneNumber());
+        //holder.phoneTextView.setText(contact.getPhoneNumber());
+        char firstLetter = contact.getName().charAt(0);
+        holder.firstlater.setText(String.valueOf(firstLetter).toUpperCase());
     }
 
     @Override
@@ -60,17 +58,18 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView nameTextView;
+        TextView nameTextView,firstlater;
         TextView phoneTextView;
         Button editButton;
         Button deleteButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            firstlater=itemView.findViewById(R.id.firstlat);
             nameTextView = itemView.findViewById(R.id.nameTextView);
-            phoneTextView = itemView.findViewById(R.id.phoneTextView);
-            editButton = itemView.findViewById(R.id.editButton);
-            deleteButton = itemView.findViewById(R.id.deleteButton);
+           // phoneTextView = itemView.findViewById(R.id.phoneTextView);
+//            editButton = itemView.findViewById(R.id.editButton);
+//            deleteButton = itemView.findViewById(R.id.deleteButton);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -84,29 +83,10 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
                 }
             });
 
-            editButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null) {
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION) {
-                            listener.onEditClick(position);
-                        }
-                    }
-                }
-            });
 
-            deleteButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null) {
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION) {
-                            listener.onDeleteClick(position);
-                        }
-                    }
-                }
-            });
+
+
         }
+
     }
 }

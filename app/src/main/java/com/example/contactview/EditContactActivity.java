@@ -29,7 +29,7 @@ ContactDatabaseHelper dbhelp;
         nameEditText.setText(contact.getName());
         emailEditText.setText(contact.getEmail());
         phoneEditText.setText(contact.getPhoneNumber());
-
+        Intent intents = new Intent(this, MainActivity.class);
         Button saveButton = findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +40,7 @@ ContactDatabaseHelper dbhelp;
                 Contact contact=new Contact(id, newName,newEmail,newPhoneNumber);
                 contact.setId(id);
                 dbhelp.updateContact(contact);
-
+                startActivityForResult(intents,0);
                 finish();
             }
         });
