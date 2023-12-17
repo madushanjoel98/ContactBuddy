@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private CancellationSignal cancellationSignal;
 
     private SettingPerfernce perfernce;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         dbhelp = new ContactDatabaseHelper(this);
 //        perfernce=SettingPerfernce.getInstance(this);
 //        String message=perfernce.getAuthSetting()?"PRESBiometric Enabled":"Normal login enabled";
-      //  Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         contacts = dbhelp.getAllContactsAlphabetical();
         originalContacts = dbhelp.getAllContactsAlphabetical();
 
@@ -99,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void openAddContactActivitys(View  view) {
+    public void openAddContactActivitys(View view) {
 
         Intent intent = new Intent(this, AddContactActivity.class);
         startActivityForResult(intent, 1);
@@ -113,7 +114,11 @@ public class MainActivity extends AppCompatActivity {
         } else {
             query = query.toLowerCase().trim();
             for (Contact contact : originalContacts) {
-                if (contact.getName().toLowerCase().contains(query) || contact.getLastname().toLowerCase().contains(query)) {
+                String fullname = contact.getName().toLowerCase() + " " + contact.getLastname().toLowerCase();
+                if (contact.getName().toLowerCase().contains(query) ||
+                        contact.getLastname().toLowerCase().contains(query)
+                || contact.getPhoneNumber().contains(query) || contact.getPhoneNumber2().contains(query)
+                ) {
                     contacts.add(contact);
                 }
 
@@ -121,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
         }
         adapter.notifyDataSetChanged();
     }
-
 
 
     @Override
@@ -167,11 +171,10 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
 
-
     }
 
-    public void  openSettingPAge(View view){
-        Intent intent = new Intent(this,MYSetting.class);
+    public void openSettingPAge(View view) {
+        Intent intent = new Intent(this, MYSetting.class);
         startActivityForResult(intent, 1);
     }
 }
