@@ -31,25 +31,29 @@ ContactDatabaseHelper contactDatabaseHelper;
         EditText nameEditText = findViewById(R.id.nameEditText);
         EditText emailEditText = findViewById(R.id.emailEditText);
         EditText phoneEditText = findViewById(R.id.phoneEditText);
+        EditText phone2EditText = findViewById(R.id.phone2EditText);
+        EditText lasnameText = findViewById(R.id.lastnameEditText);
 
         String name = nameEditText.getText().toString();
+        String last_name = lasnameText.getText().toString();
         String email = emailEditText.getText().toString();
         String phoneNumber = phoneEditText.getText().toString();
+        String phoneNumber2 = phone2EditText.getText().toString();
 
         if(TextUtils.isEmpty(name)) {
             nameEditText.setError("Name is empty");
             return;
         }
-        if(TextUtils.isEmpty(email)) {
-            emailEditText.setError("Email is empty");
-            return;
-        }
+//        if(TextUtils.isEmpty(email)) {
+//            emailEditText.setError("Email is empty");
+//            return;
+//        }
         if(TextUtils.isEmpty(phoneNumber)) {
             phoneEditText.setError("Phone number is  empty");
             return;
         }
 
-        Contact contact=new Contact( name,email,phoneNumber);
+        Contact contact=new Contact(name,email,phoneNumber,last_name,phoneNumber2);
     int id= (int) contactDatabaseHelper.addContact(contact);
         Toast.makeText(this,"ID:"+ String.valueOf(id), Toast.LENGTH_SHORT).show();
         Intent intents = new Intent(this, MainActivity.class);

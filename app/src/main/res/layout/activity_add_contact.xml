@@ -5,11 +5,19 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20px"
+        android:text="New Contact"
+        android:textColor="@android:color/black"
+        android:textSize="34sp"
+        android:textStyle="bold" />
     <!-- Name EditText with Label -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Name"
+        android:text="First Name"
         android:textSize="18sp"
         android:textColor="#000000" />
     <EditText
@@ -17,7 +25,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
-        android:hint="Enter Name" />
+        android:hint="First Name" />
+
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Last Name"
+        android:textSize="18sp"
+        android:textColor="#000000" />
+    <EditText
+        android:id="@+id/lastnameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox"
+        android:hint="Last Name" />
 
     <!-- Email EditText with Label -->
     <TextView
@@ -46,6 +70,19 @@
         android:hint="Enter Phone Number"
         android:inputType="phone"
         android:digits="0123456789+-() " />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Phone Number 02"
+        android:textSize="18sp"
+        android:textColor="#000000" />
+    <EditText
+        android:id="@+id/phone2EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Phone Number 02"
+        android:inputType="phone"
+        android:digits="0123456789+-() " />
 
     <!-- Save Button -->
     <Button
@@ -53,8 +90,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="#3FB599"
+        android:layout_marginTop="20px"
+        android:background="@drawable/btn_style"
         android:drawableLeft="@android:drawable/ic_menu_save"
-        android:text="Save" />
+
+        android:text="Save"
+        android:textAlignment="center" />
 
 </LinearLayout>

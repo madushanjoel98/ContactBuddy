@@ -1,7 +1,11 @@
 package com.example.contactview;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.hardware.biometrics.BiometricPrompt;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.CancellationSignal;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -15,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.contactview.adapters.ContactListAdapter;
 import com.example.contactview.dto.Contact;
+import com.example.contactview.perfers.SettingPerfernce;
+import com.example.contactview.security.BiometricCallback;
 import com.example.contactview.storage.ContactDatabaseHelper;
 
 import java.util.ArrayList;
@@ -26,13 +32,18 @@ public class MainActivity extends AppCompatActivity {
     private List<Contact> originalContacts = new ArrayList<>();
     private ContactListAdapter adapter;
     ContactDatabaseHelper dbhelp;
+    private BiometricPrompt biometricPrompt;
+    private CancellationSignal cancellationSignal;
 
+    private SettingPerfernce perfernce;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         dbhelp = new ContactDatabaseHelper(this);
-
+//        perfernce=SettingPerfernce.getInstance(this);
+//        String message=perfernce.getAuthSetting()?"PRESBiometric Enabled":"Normal login enabled";
+      //  Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         contacts = dbhelp.getAllContactsAlphabetical();
         originalContacts = dbhelp.getAllContactsAlphabetical();
 
@@ -102,9 +113,10 @@ public class MainActivity extends AppCompatActivity {
         } else {
             query = query.toLowerCase().trim();
             for (Contact contact : originalContacts) {
-                if (contact.getName().toLowerCase().contains(query)) {
+                if (contact.getName().toLowerCase().contains(query) || contact.getLastname().toLowerCase().contains(query)) {
                     contacts.add(contact);
                 }
+
             }
         }
         adapter.notifyDataSetChanged();
@@ -148,5 +160,18 @@ public class MainActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
+
+    }
+
+    public void  openSettingPAge(View view){
+        Intent intent = new Intent(this,MYSetting.class);
+        startActivityForResult(intent, 1);
     }
 }

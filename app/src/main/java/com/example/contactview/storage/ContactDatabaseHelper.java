@@ -22,8 +22,10 @@ public class ContactDatabaseHelper extends SQLiteOpenHelper {
     private static final String TABLE_CONTACTS = "contacts";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_NAME = "name";
+    private static final String COLUMN_LASTNAME = "lastname";
     private static final String COLUMN_EMAIL = "email";
     private static final String COLUMN_PHONE = "phone";
+    private static final String COLUMN_PHONE2 = "phone2";
 
     public ContactDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -34,7 +36,9 @@ public class ContactDatabaseHelper extends SQLiteOpenHelper {
         String createTableQuery = "CREATE TABLE " + TABLE_CONTACTS + "(" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                 COLUMN_NAME + " TEXT NOT NULL, " +
+                COLUMN_LASTNAME + " TEXT, " +
                 COLUMN_EMAIL + " TEXT, " +
+                COLUMN_PHONE2 + " TEXT, " +
                 COLUMN_PHONE + " TEXT NOT NULL" +
                 ")";
         db.execSQL(createTableQuery);
@@ -52,6 +56,8 @@ public class ContactDatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_NAME, contact.getName());
         values.put(COLUMN_EMAIL, contact.getEmail());
         values.put(COLUMN_PHONE, contact.getPhoneNumber());
+        values.put(COLUMN_LASTNAME,contact.getLastname());
+        values.put(COLUMN_PHONE2,contact.getPhoneNumber2());
         long id = db.insert(TABLE_CONTACTS, null, values);
         db.close();
         return id;
@@ -68,10 +74,14 @@ public class ContactDatabaseHelper extends SQLiteOpenHelper {
                 @SuppressLint("Range")
                 String name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME));
                 @SuppressLint("Range")
+                String lastname = cursor.getString(cursor.getColumnIndex(COLUMN_LASTNAME));
+                @SuppressLint("Range")
                 String email = cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL));
                 @SuppressLint("Range")
                 String phone = cursor.getString(cursor.getColumnIndex(COLUMN_PHONE));
-                Contact contact = new Contact(id, name, email, phone);
+                @SuppressLint("Range")
+                String phone2 = cursor.getString(cursor.getColumnIndex(COLUMN_PHONE2));
+                Contact contact = new Contact(id, name, email, phone,lastname,phone2);
                 contacts.add(contact);
             } while (cursor.moveToNext());
         }
@@ -91,7 +101,8 @@ public class ContactDatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_NAME, contact.getName());
         values.put(COLUMN_EMAIL, contact.getEmail());
         values.put(COLUMN_PHONE, contact.getPhoneNumber());
-
+        values.put(COLUMN_LASTNAME,contact.getLastname());
+        values.put(COLUMN_PHONE2,contact.getPhoneNumber2());
         db.update(TABLE_CONTACTS, values, COLUMN_ID + "=?", new String[]{String.valueOf(contact.getId())});
         db.close();
     }
@@ -102,16 +113,20 @@ public class ContactDatabaseHelper extends SQLiteOpenHelper {
         Contact contact = null;
         if (cursor.moveToFirst()) {
             @SuppressLint("Range")
-            long id = cursor.getLong(cursor.getColumnIndex(COLUMN_ID));
+            long id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID));
             @SuppressLint("Range")
             String name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME));
+            @SuppressLint("Range")
+            String lastname = cursor.getString(cursor.getColumnIndex(COLUMN_LASTNAME));
             @SuppressLint("Range")
             String email = cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL));
             @SuppressLint("Range")
             String phone = cursor.getString(cursor.getColumnIndex(COLUMN_PHONE));
-            contact = new Contact(id, name, email, phone);
-        }
+            @SuppressLint("Range")
+            String phone2 = cursor.getString(cursor.getColumnIndex(COLUMN_PHONE2));
+            contact = new Contact(id, name, email, phone,lastname,phone2);
 
+        }
         cursor.close();
         db.close();
         return contact;
@@ -128,10 +143,15 @@ public class ContactDatabaseHelper extends SQLiteOpenHelper {
                 @SuppressLint("Range")
                 String name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME));
                 @SuppressLint("Range")
+                String lastname = cursor.getString(cursor.getColumnIndex(COLUMN_LASTNAME));
+                @SuppressLint("Range")
                 String email = cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL));
                 @SuppressLint("Range")
                 String phone = cursor.getString(cursor.getColumnIndex(COLUMN_PHONE));
-                Contact contact = new Contact(id, name, email, phone);
+                @SuppressLint("Range")
+                String phone2 = cursor.getString(cursor.getColumnIndex(COLUMN_PHONE2));
+                Contact contact = new Contact(id, name, email, phone,lastname,phone2);
+
                 contacts.add(contact);
             } while (cursor.moveToNext());
         }
@@ -148,5 +168,10 @@ public class ContactDatabaseHelper extends SQLiteOpenHelper {
         });
 
         return contacts;
+    }
+    public void deleteAllContacts() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TABLE_CONTACTS, null, null);
+        db.close();
     }
 }

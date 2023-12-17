@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.contactview.R;
 import com.example.contactview.dto.Contact;
+import com.example.contactview.utils.ColorFun;
 
 import java.util.List;
 
@@ -49,6 +50,10 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
         holder.nameTextView.setText(contact.getName());
         //holder.phoneTextView.setText(contact.getPhoneNumber());
         char firstLetter = contact.getName().charAt(0);
+        if(contact.getName().length()>20){
+            holder.nameTextView.setTextSize(20);
+        }
+        ColorFun.getInstance().changecorlorByLatter(holder.firstlater,String.valueOf(firstLetter).toUpperCase());
         holder.firstlater.setText(String.valueOf(firstLetter).toUpperCase());
     }
 

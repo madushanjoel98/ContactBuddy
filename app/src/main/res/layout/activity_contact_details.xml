@@ -4,59 +4,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:backgroundTintMode="screen"
+    android:backgroundTint="#57B1FF"
     android:orientation="vertical"
-    android:padding="16dp">
+   >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <!-- Profile Image -->
-        <ImageView
-            android:layout_width="350px"
-            android:layout_height="350px"
-            android:layout_gravity="center"
-            android:layout_marginTop="80px"
-            android:layout_marginBottom="40px"
-            android:background="@drawable/nesw"
-            android:src="@drawable/baseline_person_24" />
-
-        <!-- Contact Details -->
-        <TextView
-            android:id="@+id/nameTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50px"
-            android:text="Hello"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+        android:orientation="vertical"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14px"
-            android:orientation="vertical">
+            android:paddingBottom="20dp"
+            android:background="@drawable/cardbackground"
+            android:backgroundTint="#AFDAFF"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:id="@+id/lincard"
+            >
+            <!-- Profile Image -->
+            <ImageView
+                android:layout_width="350px"
+                android:layout_height="350px"
+                android:layout_gravity="center"
+                android:layout_marginTop="80px"
+                android:layout_marginBottom="40px"
+                android:background="@drawable/nesw"
+                android:src="@drawable/baseline_person_24" />
 
+            <!-- Contact Details -->
             <TextView
-                android:id="@+id/emailTextView"
+                android:id="@+id/nameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/baseline_email_24"
+                android:layout_marginTop="50px"
                 android:text="Hello"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/phoneTextView"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/baseline_call_24"
-                android:text="07777777"
-                android:textColor="@color/black"
-                android:textSize="24sp" />
+                android:layout_marginTop="14px"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/emailTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/baseline_email_24"
+                    android:text="Hello"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/phoneTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/baseline_call_24"
+                    android:text="07777777"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/phone2TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/baseline_call_24"
+                    android:text="07777777"
+                    android:textColor="@color/black"
+                    android:textSize="24sp" />
+
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -75,10 +98,10 @@
                 tools:ignore="UseAppTint" />
 
             <ImageView
-                android:onClick="message"
                 android:layout_width="150px"
                 android:layout_height="150px"
                 android:layout_marginLeft="40px"
+                android:onClick="message"
                 android:src="@drawable/baseline_message_24"
                 android:tint="@android:color/holo_blue_bright"
                 tools:ignore="UseAppTint" />
@@ -90,7 +113,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -117,6 +142,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"
+
             android:orientation="vertical">
 
             <ImageView
