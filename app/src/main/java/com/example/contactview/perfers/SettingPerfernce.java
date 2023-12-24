@@ -1,8 +1,6 @@
 package com.example.contactview.perfers;
-
 import android.content.Context;
 import android.content.SharedPreferences;
-
 public class SettingPerfernce {
     private static final String SHARED_PREFERENCES_NAME = "settingcontact";
     private static final String AUTH_KEY = "sAuth";

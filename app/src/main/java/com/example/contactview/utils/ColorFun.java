@@ -122,8 +122,5 @@ public class ColorFun {
         view.setBackgroundTintList(ColorStateList.valueOf(color));
     }
 
-public void  fColorpicker(){
 
-
-}
 }
