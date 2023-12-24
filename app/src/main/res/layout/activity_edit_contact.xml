@@ -64,7 +64,8 @@ android:layout_marginBottom="60px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Phone Number"
-
+        android:inputType="phone"
+        android:digits="0123456789+-() "
         android:singleLine="true" />
 
     <TextView
@@ -79,8 +80,10 @@ android:layout_marginBottom="60px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Phone Number 2"
-
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:inputType="phone"
+        android:digits="0123456789+-() "
+        android:importantForAutofill="no" />
     <Button
         android:id="@+id/saveButton"
         android:layout_width="wrap_content"
