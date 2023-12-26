@@ -1,3 +1,10 @@
+
+
+
+/*
+ * madushan joel 2023.
+ */
+
 package com.example.contactview.utils;
 
 import android.app.Activity;
@@ -11,6 +18,10 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * madushan joel 2023.
+ * <b>singleton class</b>
+ */
 public class ColorFun {
 
     private static ColorFun single_instance = null;
@@ -25,6 +36,10 @@ public class ColorFun {
         return single_instance;
     }
 
+
+    /**
+     * change the background color by latter
+     */
     public void changecorlorByLatter(View view, String letter) {
         letter = letter.toUpperCase();
 
@@ -106,9 +121,13 @@ public class ColorFun {
         view.setBackgroundTintList(ColorStateList.valueOf(color));
     }
 
-    public void changeRandomColor(View view, Activity activity ) {
+
+    /**
+     * Get Random color set to Layer background tint
+     */
+    public void changeRandomColor(View view, Activity activity) {
         String[] hasshs = {"#ffdb78", "#94cbff", "#def7be", "#bef7da",
-                           "#548dff", "#e66d74", "#f36a6f", "#D88CF6"};
+                "#548dff", "#e66d74", "#f36a6f", "#D88CF6"};
         Window window = activity.getWindow();
 
         // Generate a random index to pick a color from the array

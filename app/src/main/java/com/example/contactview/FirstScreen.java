@@ -1,3 +1,7 @@
+/*
+ * madushan joel 2023.
+ */
+
 package com.example.contactview;
 
 import androidx.appcompat.app.AppCompatActivity;

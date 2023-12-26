@@ -1,3 +1,7 @@
+<!--
+  ~ madushan joel 2023.
+  -->
+
 <resources>
     <string name="app_name">Contact Buddy</string>
     <string name="title_activity_settings">SettingsActivity</string>

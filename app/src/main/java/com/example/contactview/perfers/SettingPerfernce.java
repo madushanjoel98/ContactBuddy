@@ -1,6 +1,18 @@
+/*
+ * madushan joel 2023.
+ */
+
 package com.example.contactview.perfers;
+
 import android.content.Context;
 import android.content.SharedPreferences;
+
+/**
+ * <h1>Setting Perefernce class.</h1>
+ *
+ * @author madushan joel
+ * @deprecated used to save Setting parameters
+ */
 public class SettingPerfernce {
     private static final String SHARED_PREFERENCES_NAME = "settingcontact";
     private static final String AUTH_KEY = "sAuth";
@@ -19,6 +31,9 @@ public class SettingPerfernce {
         this.sharedPref = context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
     }
 
+    /**
+     * @deprecated set biomartrics on/off
+     */
     public void setAuthSetting(boolean isAuth) {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putBoolean(AUTH_KEY, isAuth);

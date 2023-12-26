@@ -1,8 +1,22 @@
+
+/*
+ * madushan joel 2023.
+ */
+
+/*
+ * madushan joel 2023.
+ */
+
+/*
+ * madushan joel 2023.
+ */
+
 package com.example.contactview;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,6 +64,11 @@ ContactDatabaseHelper contactDatabaseHelper;
 //        }
         if(TextUtils.isEmpty(phoneNumber)) {
             phoneEditText.setError("Phone number is  empty");
+            return;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            emailEditText.setError("Enter a valid email address");
             return;
         }
 
