@@ -6,6 +6,8 @@ package com.example.contactview;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,7 +49,24 @@ ContactDatabaseHelper dbhelp;
                 String newEmail = emailEditText.getText().toString();
                 String newPhoneNumber = phoneEditText.getText().toString();
                 String newPhoneNumber2=phone2EditText.getText().toString();
-
+                if (TextUtils.isEmpty(newName)) {
+                    nameEditText.setError("Name is empty");
+                    return;
+                }
+//        if(TextUtils.isEmpty(email)) {
+//            emailEditText.setError("Email is empty");
+//            return;
+//        }
+                if (TextUtils.isEmpty(newPhoneNumber)) {
+                    phoneEditText.setError("Phone number is  empty");
+                    return;
+                }
+                if (!newEmail.isEmpty()) {
+                    if (!Patterns.EMAIL_ADDRESS.matcher(newEmail).matches()) {
+                        emailEditText.setError("Enter a valid email address");
+                        return;
+                    }
+                }
                 Contact contact=new Contact(id, newName,newEmail,newPhoneNumber,newlastName,newPhoneNumber2);
                 contact.setId(id);
                 dbhelp.updateContact(contact);
